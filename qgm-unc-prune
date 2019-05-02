@@ -18,7 +18,7 @@ if [ $DRYRUN == "true" ]; then
 fi
 echo "-------------------------------------------"
 
-if [ -f ${LIBDIR}/prune_unc.js ]; then 
+if [ ! -f ${LIBDIR}/prune_unc.js ]; then 
     echo "Prune script not found in ${LIBDIR}/prune_unc.js"
     echo "Exiting."
     exit 1
