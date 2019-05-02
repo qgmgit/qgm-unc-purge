@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LIBDIR="/usr/local/lib/qgm-unc-prune/"
+LIBDIR="/usr/local/lib/qgm-unc-prune"
 EXECCONF="/tmp/$$_uncprune.js"
 
 DRYRUN=true
@@ -18,7 +18,7 @@ if [ $DRYRUN == "true" ]; then
 fi
 echo "-------------------------------------------"
 
-sed "s/^var days=.*$/var days=${DAYS};/" prune_unc.js > $EXECCONF
+sed "s/^var days=.*$/var days=${DAYS};/" ${LIBDIR}/prune_unc.js > $EXECCONF
 sed -i "s/^var dryrun=.*$/var dryrun=${DRYRUN};/" $EXECCONF
 
 
