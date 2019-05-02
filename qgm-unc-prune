@@ -1,0 +1,31 @@
+#!/bin/bash
+
+LIBDIR="/usr/local/lib/qgm-unc-prune/"
+EXECCONF="/tmp/$$_uncprune.js"
+
+DRYRUN=true
+DAYS=14
+
+echo "-------------------------------------------"
+if [ -f /etc/qgm-unc-prune.conf ]; then
+echo "Reading config /etc/qgm-unc-prune.conf "
+. /etc/qgm-unc-prune.conf
+fi
+
+echo "Pruning DB entrys older than $DAYS days"
+if [ $DRYRUN == "true" ]; then 
+    echo "Running in dryrun mode. Not modifying DB"
+fi
+echo "-------------------------------------------"
+
+sed "s/^var days=.*$/var days=${DAYS};/" prune_unc.js > $EXECCONF
+sed -i "s/^var dryrun=.*$/var dryrun=${DRYRUN};/" $EXECCONF
+
+
+mongo --port 27117 < $EXECCONF
+
+rm $EXECCONF
+
+
+
+

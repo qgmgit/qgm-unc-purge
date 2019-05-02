@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ -x /usr/local/sbin/qgm-unc-prune ]; then 
+    /usr/local/sbin/qgm-unc-prune > /var/log/qgm-unc-prune.log 2>&1
+fi
+
